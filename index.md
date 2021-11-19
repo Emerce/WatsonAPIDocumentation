@@ -30,7 +30,7 @@ date: Fri, 19 Nov 2021 13:41:36 GMT
 x-ratelimit-limit: 6000
 x-ratelimit-remaining: 5999
 
-{"message":"Unauthenticated."}                                                                                                         
+{"message":"Unauthenticated."}
 ```
 
 ## Endpoints
@@ -91,5 +91,42 @@ date: Fri, 19 Nov 2021 13:40:29 GMT
 {"message":"User must reset password","url":"https:\/\/loc.account.emerce.nl\/password\/reset"}                                                                                                                                                                                             
 ```
 
+### /user
+- **Purpose:**
+  - Get a specific User's profile data using their unique API token
+- **Type:**
+  - POST
+- **Full URL:**
+  - https://account.emerce.nl/api/user
+- **Params:**
+  - *token* - The User's unique API token
+- **Response types:**
+  - *404 (Not found)* - Invalid token
+  - *200 (OK)* - Reponse provides User's profile data
 
+**Example request**
+curl --location --request POST 'https://account.emerce.nl/api/user' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' \
+--form 'token="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"'
 
+**Example responses**
+```
+HTTP/2 404 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Fri, 19 Nov 2021 13:50:52 GMT
+
+{"status":"error","message":"Invalid token"}
+```
+
+```
+HTTP/2 200 
+server: nginx/1.18.0 (Ubuntu)
+content-type: application/json
+cache-control: no-cache, private
+date: Fri, 19 Nov 2021 13:51:56 GMT
+
+{"user":{"id":7102,"first_name":"Bastiaan","last_name_prefix":"van","last_name":"Dreunen","position":"Creative & Developer, Owner","email":"bastiaan@superinteractive.com","subscription_type":1,"registration_subscription_type":1}}
+```
