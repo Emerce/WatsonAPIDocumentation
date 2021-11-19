@@ -68,5 +68,15 @@ date: Fri, 19 Nov 2021 12:27:00 GMT
 {"token":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"}
 ```
 
+```
+HTTP/2 303 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Fri, 19 Nov 2021 13:40:29 GMT
+
+{"message":"User must reset password","url":"https:\/\/loc.account.emerce.nl\/password\/reset"}                                                                                                                                                                                             
+```
+
 
 
