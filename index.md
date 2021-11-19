@@ -3,6 +3,8 @@ Documentation for usage of the WatsonAPI
 ## Introduction
 Watson is the name of the application on which account.emerce.nl runs. On the front it provides a public platform for Emerce Users to edit their settings, personal data, preferences etc. On the back it connects to Sherlock, the main back-office system for EMERCE, to proces updates submitted by Users, fetch personal data to be used on the EMERCE websites, manage subscriptions, etc.
 
+The WatsonAPI provides endpoints to facilitate processes initiated by both Sherlock and (currently the only public client) Emerce.nl. Below you will find a list of all available endpoints, a description of their usecases and documentation on how to appraoch them.
+
 ## RESTful API
 WatsonAPI is a RESTful API. 
 
@@ -33,10 +35,7 @@ x-ratelimit-remaining: 5999
 {"message":"Unauthenticated."}
 ```
 
-## Endpoints
-The WatsonAPI provides endpoints to facilitate processes initiated by both Sherlock and (currently the only public client) Emerce.nl. Below you will find a list of all available endpoints, a description of their usecases and documentation on how to appraoch them.
-
-### /authenticate
+## /authenticate
 - **Purpose:**
   - Used to authenticate a user providing an email address and password. 
 - **Type:**
@@ -91,7 +90,7 @@ date: Fri, 19 Nov 2021 13:40:29 GMT
 {"message":"User must reset password","url":"https:\/\/loc.account.emerce.nl\/password\/reset"}                                                                                                                                                                                             
 ```
 
-### /user
+## /user
 - **Purpose:**
   - Get a specific User's profile data using their unique API token
 - **Type:**
