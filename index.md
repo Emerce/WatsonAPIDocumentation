@@ -91,6 +91,7 @@ date: Fri, 19 Nov 2021 13:40:29 GMT
 ```
 
 ## /user
+
 - **Purpose:**
   - Get a specific User's profile data using their unique API token
 - **Type:**
@@ -129,3 +130,18 @@ date: Fri, 19 Nov 2021 13:51:56 GMT
 
 {"user":{"id":7102,"first_name":"Test","last_name_prefix":"van der","last_name":"Emerce","position":"Creative & Developer, Owner","email":"test@emerce.com","subscription_type":1,"registration_subscription_type":1}}
 ```
+
+## /register
+
+- **Purpose:**
+  - Register a new user
+- **Type:**
+  - POST
+- **Full URL:**
+  - https://account.emerce.nl/api/register
+- **Params:**
+  - *email* - The User's email address
+- **Response types:**
+  - *422 (Unprocessable entity)* - Validation issue, usually email already occurs in database
+  - *200 (OK)* - Registration successfull
+  - 
