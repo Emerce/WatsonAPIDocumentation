@@ -54,8 +54,6 @@ server: nginx
 content-type: application/json
 cache-control: no-cache, private
 date: Fri, 19 Nov 2021 12:26:12 GMT
-x-ratelimit-limit: 6000
-x-ratelimit-remaining: 5999
 
 {"status":"error","message":"User not found or invalid login credentials"}%                                                                                                                                                                                                                    
 ```
@@ -66,8 +64,6 @@ server: nginx
 content-type: application/json
 cache-control: no-cache, private
 date: Fri, 19 Nov 2021 12:27:00 GMT
-x-ratelimit-limit: 6000
-x-ratelimit-remaining: 5997
 
 {"token":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"}
 ```
