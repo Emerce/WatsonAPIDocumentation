@@ -55,7 +55,7 @@ x-ratelimit-remaining: 5999
 curl --location --request POST 'https://account.emerce.nl/api/authenticate' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' \
---form 'email="bastiaan@superinteractive.com"' \
+--form 'email="test@emerce.com"' \
 --form 'password="Welkom01"'
 ```
 
@@ -127,5 +127,5 @@ content-type: application/json
 cache-control: no-cache, private
 date: Fri, 19 Nov 2021 13:51:56 GMT
 
-{"user":{"id":7102,"first_name":"Bastiaan","last_name_prefix":"van","last_name":"Dreunen","position":"Creative & Developer, Owner","email":"bastiaan@superinteractive.com","subscription_type":1,"registration_subscription_type":1}}
+{"user":{"id":7102,"first_name":"Test","last_name_prefix":"van der","last_name":"Emerce","position":"Creative & Developer, Owner","email":"test@emerce.com","subscription_type":1,"registration_subscription_type":1}}
 ```
