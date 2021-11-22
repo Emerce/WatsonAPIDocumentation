@@ -129,7 +129,8 @@ cache-control: no-cache, private
 date: Fri, 19 Nov 2021 13:50:52 GMT
 
 {
-  "status":"error","message":"Invalid token"
+  "status":"error",
+  "message":"Invalid token"
 }
 ```
 
@@ -250,12 +251,10 @@ curl --location --request POST 'https://account.emerce.nl/api/setConsent' \
 **Example responses**
 ```
 HTTP/2 422 
-server: nginx/1.18.0 (Ubuntu)
+server: nginx
 content-type: application/json
 cache-control: no-cache, private
 date: Mon, 22 Nov 2021 12:12:34 GMT
-x-ratelimit-limit: 6000
-x-ratelimit-remaining: 5998
 
 {
    "message":"The given data was invalid.",
@@ -277,5 +276,72 @@ date: Mon, 22 Nov 2021 13:18:28 GMT
 {
    "status":200,
    "message":"OK"
+}
+```
+
+## /registerUserUpdate
+
+- **Purpose:**
+  - Register a User's profile data having been modified
+- **Type:**
+  - POST
+- **Full URL:**
+  - https://account.emerce.nl/api/registerUserUpdate
+- **Params:**
+  - *email* - The User's email address
+- **Response types:**
+  - *422 (Unprocessable entity)* - Validation issue; invalid email address
+  - *404 (Not found)* - Email address unknown
+  - *200 (OK)* - Success
+  
+**Example request**
+```
+curl --location --request POST 'https://account.emerce.nl/api/registerUserUpdate' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' \
+--form 'email="test@emerce.nl"'
+```
+
+**Example responses**
+```
+HTTP/2 422 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Mon, 22 Nov 2021 12:12:34 GMT
+
+{
+   "message":"The given data was invalid.",
+   "errors":{
+      "token":[
+         "Invalid email address"
+      ]
+   }
+}
+```
+
+```
+HTTP/2 404 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Fri, 19 Nov 2021 13:50:52 GMT
+
+{
+    "status": 404,
+    "message": "User not found"
+}
+```
+
+```
+HTTP/2 200 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Fri, 19 Nov 2021 13:50:52 GMT
+
+{
+    "status": 200,
+    "message": "OK"
 }
 ```
