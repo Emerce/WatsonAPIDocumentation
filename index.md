@@ -1,4 +1,4 @@
-Documentation for usage of the WatsonAPI
+# WatsonAPI Documentation
 
 ## Introduction
 Watson is the name of the application on which account.emerce.nl runs. On the front it provides a public platform for Emerce Users to edit their settings, personal data, preferences etc. On the back it connects to Sherlock, the main back-office system for EMERCE, to proces updates submitted by Users, fetch personal data to be used on the EMERCE websites, manage subscriptions, etc.
