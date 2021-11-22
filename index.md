@@ -32,7 +32,9 @@ date: Fri, 19 Nov 2021 13:41:36 GMT
 x-ratelimit-limit: 6000
 x-ratelimit-remaining: 5999
 
-{"message":"Unauthenticated."}
+{
+   "message":"Unauthenticated."
+}
 ```
 
 ## /authenticate
@@ -67,7 +69,10 @@ content-type: application/json
 cache-control: no-cache, private
 date: Fri, 19 Nov 2021 12:26:12 GMT
 
-{"status":"error","message":"User not found or invalid login credentials"}%                                                                                                                                                                                                                    
+{
+   "status":"error",
+   "message":"User not found or invalid login credentials"
+}
 ```
 
 ```
@@ -77,7 +82,9 @@ content-type: application/json
 cache-control: no-cache, private
 date: Fri, 19 Nov 2021 12:27:00 GMT
 
-{"token":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"}
+{
+  "token":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+}
 ```
 
 ```
@@ -87,7 +94,10 @@ content-type: application/json
 cache-control: no-cache, private
 date: Fri, 19 Nov 2021 13:40:29 GMT
 
-{"message":"User must reset password","url":"https:\/\/loc.account.emerce.nl\/password\/reset"}                                                                                                                                                                                             
+{
+   "message":"User must reset password",
+   "url":"https:\/\/loc.account.emerce.nl\/password\/reset"
+}
 ```
 
 ## /user
@@ -118,17 +128,30 @@ content-type: application/json
 cache-control: no-cache, private
 date: Fri, 19 Nov 2021 13:50:52 GMT
 
-{"status":"error","message":"Invalid token"}
+{
+  "status":"error","message":"Invalid token"
+}
 ```
 
 ```
 HTTP/2 200 
-server: nginx/1.18.0 (Ubuntu)
+server: nginx
 content-type: application/json
 cache-control: no-cache, private
 date: Fri, 19 Nov 2021 13:51:56 GMT
 
-{"user":{"id":7102,"first_name":"Test","last_name_prefix":"van der","last_name":"Emerce","position":"Creative & Developer, Owner","email":"test@emerce.com","subscription_type":1,"registration_subscription_type":1}}
+{
+   "user":{
+      "id":7102,
+      "first_name":"Test",
+      "last_name_prefix":"van der",
+      "last_name":"Emerce",
+      "position":"Creative & Developer, Owner",
+      "email":"test@emerce.com",
+      "subscription_type":1,
+      "registration_subscription_type":1
+   }
+}
 ```
 
 ## /register
@@ -142,6 +165,78 @@ date: Fri, 19 Nov 2021 13:51:56 GMT
 - **Params:**
   - *email* - The User's email address
 - **Response types:**
-  - *422 (Unprocessable entity)* - Validation issue, usually email already occurs in database
+  - *422 (Unprocessable entity)* - Validation issue; email invalid or already occurs in database
   - *200 (OK)* - Registration successfull
-  - 
+  
+**Example request**
+```
+curl --location --request POST 'https://account.emerce.nl/api/register' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' \
+--form 'email="test@emerce.com"'
+```
+
+**Example responses**
+```
+HTTP/2 422 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Mon, 22 Nov 2021 12:01:37 GMT
+
+{
+   "message":"The given data was invalid.",
+   "errors":{
+      "email":[
+         "Email address already exists."
+      ]
+   }
+}
+```
+
+```
+HTTP/2 422 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Mon, 22 Nov 2021 12:01:37 GMT
+
+{
+   "message":"The given data was invalid.",
+   "errors":{
+      "email":[
+         "Email address already exists."
+      ]
+   }
+}
+```
+
+```
+HTTP/2 422 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Mon, 22 Nov 2021 12:03:30 GMT
+
+{
+   "message":"The given data was invalid.",
+   "errors":{
+      "email":[
+         "Invalid email address"
+      ]
+   }
+}
+```
+
+```
+HTTP/2 200 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Mon, 22 Nov 2021 12:04:48 GMT
+{
+  "status":200,
+  "message":"OK"
+}
+```
+
