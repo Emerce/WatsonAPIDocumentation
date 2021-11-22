@@ -212,23 +212,6 @@ date: Mon, 22 Nov 2021 12:01:37 GMT
 ```
 
 ```
-HTTP/2 422 
-server: nginx
-content-type: application/json
-cache-control: no-cache, private
-date: Mon, 22 Nov 2021 12:03:30 GMT
-
-{
-   "message":"The given data was invalid.",
-   "errors":{
-      "email":[
-         "Invalid email address"
-      ]
-   }
-}
-```
-
-```
 HTTP/2 200 
 server: nginx
 content-type: application/json
@@ -240,3 +223,59 @@ date: Mon, 22 Nov 2021 12:04:48 GMT
 }
 ```
 
+## /setConsent
+
+- **Purpose:**
+  - Register a User's explicitely given consent
+- **Type:**
+  - POST
+- **Full URL:**
+  - https://account.emerce.nl/api/setConsent
+- **Params:**
+  - *token* - The User's API token
+  - *consentUrl* - The URL containing the terms & conditions the User has consented to.
+- **Response types:**
+  - *422 (Unprocessable entity)* - Validation issue; token does not exist or invalid URL
+  - *200 (OK)* - Success
+  
+**Example request**
+```
+curl --location --request POST 'https://account.emerce.nl/api/setConsent' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' \
+--form 'token="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"' \
+--form 'consentUrl="https://www.emerce.nl/some-premium-article/"'
+```
+
+**Example responses**
+```
+HTTP/2 422 
+server: nginx/1.18.0 (Ubuntu)
+content-type: application/json
+cache-control: no-cache, private
+date: Mon, 22 Nov 2021 12:12:34 GMT
+x-ratelimit-limit: 6000
+x-ratelimit-remaining: 5998
+
+{
+   "message":"The given data was invalid.",
+   "errors":{
+      "token":[
+         "Invalid token"
+      ]
+   }
+}
+```
+
+```
+HTTP/2 200 
+server: nginx
+content-type: application/json
+cache-control: no-cache, private
+date: Mon, 22 Nov 2021 13:18:28 GMT
+
+{
+   "status":200,
+   "message":"OK"
+}
+```
