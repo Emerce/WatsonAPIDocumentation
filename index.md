@@ -25,12 +25,10 @@ curl --location --request POST 'https://account.emerce.nl/api/authenticate' \
 Example response of an unsuccesful authorization attempt:
 ```
 HTTP/2 401 
-server: nginx/1.18.0 (Ubuntu)
+server: nginx
 content-type: application/json
 cache-control: no-cache, private
 date: Fri, 19 Nov 2021 13:41:36 GMT
-x-ratelimit-limit: 6000
-x-ratelimit-remaining: 5999
 
 {
    "message":"Unauthenticated."
